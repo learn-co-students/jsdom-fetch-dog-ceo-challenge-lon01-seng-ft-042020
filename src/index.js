@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function showImages(imagesData) {
-  // debugger
+  // debugger - to check what we have at our data exactly
   for (let i = 0; i < imagesData.message.length; i++) {
     addImage(imagesData.message[i]);
   }
@@ -23,9 +23,12 @@ function showImages(imagesData) {
 
 function addImage(image) {
   // selecting the target of the operation
-  debugger;
-  const image_list = document.querySelector('#dog-image-container');
+  // debugger - to check if all works
+  const image_div = document.querySelector('#dog-image-container');
+  // creating a src tag - the DOM node that will be append to div
   const imageElement = document.createElement('img');
   imageElement.src = image;
-  image_list.append(imageElement);
+  // add element to div
+  // append - all elements, appendChild - one element 
+  image_div.append(imageElement);
 }
