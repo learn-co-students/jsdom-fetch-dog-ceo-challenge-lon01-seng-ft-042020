@@ -47,9 +47,9 @@ function addImage(image) {
   imageDiv.append(imageElement);
 }
 
-function showBreeds(breedsData, key, value) {
-  // debugger
-  for (let [key, value] of Object.entries(breedsData)) {
+function showBreeds(breedsData) {
+// debugger
+  for (let key in Object(breedsData)) {
     addBreed('${key}: ${value}');
   }
 }
@@ -57,6 +57,64 @@ function showBreeds(breedsData, key, value) {
 function addBreed(breed) {
   const breedUl = document.querySelector('#dog-breeds');
   const breedElementLi = document.createElement('li');
-  breedElementLi.textContent = breed.title
+  // the line below breed.title??
+  breedElementLi.textContent = "test"
   breedUl.append(breedElementLi);
+
+// ---------------------------------------------------------
+// change color at tag li 
+// ---------------------------------------------------------
+
+function changeColorBackground(domNode, color) {
+    domNode.style.background = color;
 }
+
+breedElementLi.addEventListener('mouseover', function (event) {
+    changeColorBackground(breedElementLi, "salmon");
+})
+
+function changeColorText(domNode, color) {
+    domNode.style.color= color;
+}
+
+breedElementLi.addEventListener('click', function (event) {
+    changeColorText(breedElementLi, "grey");
+})
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// another way 
+
+// const breedUrl = 'https://dog.ceo/api/breeds/list/all';
+
+// function parseJSONIntoJSObject(JSONDataAboutBreed) {
+//   return JSONDataAboutBreed.json();
+// }
+
+// function renderBreeds(breedsArray) {
+//   showBreeds(breedsArray);
+// }
+
+// function handleError(error) {
+//   console.error(error);
+//   alert('Error');
+// }
+
+// function getAllBreeds() {
+//   //debugger
+//   fetch(breedUrl)
+//     .then(parseJSONIntoJSObject)
+//     .then(renderBreeds)
+//     .catch(handleError);
+// } 
