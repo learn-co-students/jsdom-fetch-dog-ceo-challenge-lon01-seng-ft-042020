@@ -49,17 +49,26 @@ function addImage(image) {
 
 function showBreeds(breedsData) {
 // debugger
-  for (let key in Object(breedsData)) {
-    addBreed('${key}: ${value}');
+// write in the console breedsData and see how the data has been built
+// breedData.message
+  for (let key in Object(breedsData.message)) {
+    addBreed(key);
   }
 }
+
+// another way to literate through object 
+// for (let i = 0; i < Object.keys(breedsData.message).length; i++) {
+//   addBreed(Object.keys(breedsData.message)[i]);
+// }
+// }
 
 function addBreed(breed) {
   const breedUl = document.querySelector('#dog-breeds');
   const breedElementLi = document.createElement('li');
   // the line below breed.title??
-  breedElementLi.textContent = "test"
+  breedElementLi.textContent = breed
   breedUl.append(breedElementLi);
+
 
 // ---------------------------------------------------------
 // change color at tag li 
