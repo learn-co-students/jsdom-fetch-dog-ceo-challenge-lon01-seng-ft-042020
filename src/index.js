@@ -48,15 +48,15 @@ function addImage(image) {
 }
 
 function showBreeds(breedsData) {
-// debugger
-// write in the console breedsData and see how the data has been built
-// breedData.message
+  // debugger
+  // write in the console breedsData and see how the data has been built
+  // breedData.message
   for (let key in Object(breedsData.message)) {
     addBreed(key);
   }
 }
 
-// another way to literate through object 
+// another way to literate through object
 // for (let i = 0; i < Object.keys(breedsData.message).length; i++) {
 //   addBreed(Object.keys(breedsData.message)[i]);
 // }
@@ -66,30 +66,45 @@ function addBreed(breed) {
   const breedUl = document.querySelector('#dog-breeds');
   const breedElementLi = document.createElement('li');
   // the line below breed.title??
-  breedElementLi.textContent = breed
+  breedElementLi.textContent = breed;
   breedUl.append(breedElementLi);
 
+  // ---------------------------------------------------------
+  // change color at tag li
+  // ---------------------------------------------------------
 
-// ---------------------------------------------------------
-// change color at tag li 
-// ---------------------------------------------------------
-
-function changeColorBackground(domNode, color) {
+  function changeColorBackground(domNode, color) {
     domNode.style.background = color;
+  }
+
+  breedElementLi.addEventListener('mouseover', function (event) {
+      changeColorBackground(breedElementLi, 'yellow');
+
+      // reset the color after a short delay
+      setTimeout(function () {
+        // event.target.style.color = "";
+        changeColorBackground(breedElementLi, '');
+      }, 800);
+    },
+    false
+  );
+
+  function changeColorText(domNode, color) {
+    domNode.style.color = color;
+  }
+
+  breedElementLi.addEventListener('click', function (event) {
+    changeColorText(breedElementLi, 'green');
+  });
 }
 
-breedElementLi.addEventListener('mouseover', function (event) {
-    changeColorBackground(breedElementLi, "salmon");
-})
 
-function changeColorText(domNode, color) {
-    domNode.style.color= color;
-}
+// -----------------------------------------------------
+// select from dropdown menu 
+// -----------------------------------------------------
 
-breedElementLi.addEventListener('click', function (event) {
-    changeColorText(breedElementLi, "grey");
-})
-}
+
+const dropdownMenu = document.querySelector("#breed-dropdown")
 
 
 
@@ -108,7 +123,12 @@ breedElementLi.addEventListener('click', function (event) {
 
 
 
-// another way 
+
+
+
+
+
+// another way
 
 // const breedUrl = 'https://dog.ceo/api/breeds/list/all';
 
@@ -131,4 +151,4 @@ breedElementLi.addEventListener('click', function (event) {
 //     .then(parseJSONIntoJSObject)
 //     .then(renderBreeds)
 //     .catch(handleError);
-// } 
+// }
