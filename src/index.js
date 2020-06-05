@@ -103,6 +103,11 @@ breedElementLi.addEventListener('click', function (event) {
 
 
 
+
+
+
+
+
 // another way 
 
 // const breedUrl = 'https://dog.ceo/api/breeds/list/all';
