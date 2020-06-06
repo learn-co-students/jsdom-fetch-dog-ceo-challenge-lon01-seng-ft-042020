@@ -13,18 +13,39 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Error');
     });
 
-  // checking if fetch is working at Dev tools/ Network
-  fetch('https://dog.ceo/api/breeds/list/all')
-    .then(function (JSONDataAboutBreed) {
-      return JSONDataAboutBreed.json();
-    })
-    .then(function (breedsData) {
-      showBreeds(breedsData);
-    })
-    .catch(function (error) {
-      console.error(error);
-      alert('Error');
-    });
+  // CHECK if fetch is working at Dev tools/ Network
+  function parseJSONIntoJSObject(JSONDataAboutBreeds) {
+    return JSONDataAboutBreeds.json();
+  }
+
+  function renderBreeds(breedsData) {
+    showBreeds(breedsData);
+  }
+
+  function handleError(error) {
+    console.error(error);
+    alert('YIKES!');
+  }
+
+  const breedUrl = 'https://dog.ceo/api/breeds/list/all';
+
+  fetch(breedUrl)
+    .then(parseJSONIntoJSObject)
+    .then(renderBreeds)
+    .catch(handleError);
+  
+  // ANOTHER WAY
+  // fetch('https://dog.ceo/api/breeds/list/all')
+  //   .then(function (JSONDataAboutBreed) {
+  //     return JSONDataAboutBreed.json();
+  //   })
+  //   .then(function (breedsData) {
+  //     showBreeds(breedsData);
+  //   })
+  //   .catch(function (error) {
+  //     console.error(error);
+  //     alert('Error');
+  //   });
 });
 
 function showImages(imagesData) {
@@ -47,6 +68,10 @@ function addImage(image) {
   imageDiv.append(imageElement);
 }
 
+// ---------------------------------------------------------
+// Show breeds
+// ---------------------------------------------------------
+
 function showBreeds(breedsData) {
   // debugger
   // write in the console breedsData and see how the data has been built
@@ -56,7 +81,7 @@ function showBreeds(breedsData) {
   }
 }
 
-// another way to literate through object
+// ANOTHER WAY to literate through object
 // for (let i = 0; i < Object.keys(breedsData.message).length; i++) {
 //   addBreed(Object.keys(breedsData.message)[i]);
 // }
@@ -65,7 +90,6 @@ function showBreeds(breedsData) {
 function addBreed(breed) {
   const breedUl = document.querySelector('#dog-breeds');
   const breedElementLi = document.createElement('li');
-  // the line below breed.title??
   breedElementLi.textContent = breed;
   breedUl.append(breedElementLi);
 
@@ -77,7 +101,9 @@ function addBreed(breed) {
     domNode.style.background = color;
   }
 
-  breedElementLi.addEventListener('mouseover', function (event) {
+  breedElementLi.addEventListener(
+    'mouseover',
+    function (event) {
       changeColorBackground(breedElementLi, 'yellow');
 
       // reset the color after a short delay
@@ -98,57 +124,28 @@ function addBreed(breed) {
   });
 }
 
-
 // -----------------------------------------------------
-// select from dropdown menu 
+// dropdown menu section
 // -----------------------------------------------------
 
+// const optionArray = [e, f, g, h, i, j, k, l, m, n, o, p, r, s, t, u, w, z]
 
-const dropdownMenu = document.querySelector("#breed-dropdown")
+function addOptionSelect() {
+  const dropdownMenu = document.querySelector('#breed-dropdown');
+  const letterE = document.createElement('option');
+  letterE.textContent = 'e';
+  console.log(letterE);
+  // add, append, appendChild ??? check
+  dropdownMenu.append(letterE, dropdownMenu[4]);
+  console.log(dropdownMenu);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// another way
-
-// const breedUrl = 'https://dog.ceo/api/breeds/list/all';
-
-// function parseJSONIntoJSObject(JSONDataAboutBreed) {
-//   return JSONDataAboutBreed.json();
-// }
-
-// function renderBreeds(breedsArray) {
-//   showBreeds(breedsArray);
-// }
-
-// function handleError(error) {
-//   console.error(error);
-//   alert('Error');
-// }
-
-// function getAllBreeds() {
-//   //debugger
-//   fetch(breedUrl)
-//     .then(parseJSONIntoJSObject)
-//     .then(renderBreeds)
-//     .catch(handleError);
+// function showSpecificBreed(BreedsData) {
+//   // debugger
+//   //for...in  for object
+//   for (let key in Object(breedsData.message)) {
+//     if (key.charAt(0) === option) {
+//       return key;
+//     }
+//   }
 // }
