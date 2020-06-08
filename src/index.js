@@ -18,7 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return JSONDataAboutBreeds.json();
   }
 
-  function renderBreeds(breedsData) {
+  //?????????????
+  // define variable
+  // let do not need to be assigned to value, first is null
+  let breedsDataValue; 
+ function renderBreeds(breedsData) {
+   // set variable 
+ breedsDataValue = breedsData
     showBreeds(breedsData);
   }
 
@@ -46,6 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
   //     console.error(error);
   //     alert('Error');
   //   });
+
+
+  const select = document.querySelector("#breed-dropdown")
+  select.addEventListener('change', function(event) {
+    showBreeds(breedsDataValue)
+  })
 });
 
 function showImages(imagesData) {
@@ -73,13 +85,33 @@ function addImage(image) {
 // ---------------------------------------------------------
 
 function showBreeds(breedsData) {
-  // debugger
   // write in the console breedsData and see how the data has been built
   // breedData.message
+  const filterBreeds = document.querySelector("#breed-dropdown")
+  const character = filterBreeds.value 
+ const breedList = document.querySelector("#dog-breeds")
+breedList.innerHTML = ""
   for (let key in Object(breedsData.message)) {
-    addBreed(key);
+    if(character === key.charAt(0)){
+      addBreed(key)
+    }
+  
+
+   // to show key and value 
+  // const breedsDictionary = Object(breedsData.message);
+  // for (let key in breedsDictionary) {
+  //     const otherDogs = breedsDictionary[key];
+  //     addBreed(key)
+  //     for (dog of otherDogs) {
+  //       addBreed(dog)
+  //     }
+  // }
   }
 }
+
+
+// ?? How to get the key and the value?????
+// https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
 
 // ANOTHER WAY to literate through object
 // for (let i = 0; i < Object.keys(breedsData.message).length; i++) {
@@ -119,6 +151,9 @@ function addBreed(breed) {
     domNode.style.color = color;
   }
 
+  // ????? function (event) and after I do not use event world????
+  //????? always use event as a argument but not with remove ?????
+  // QUESTION NR 9
   breedElementLi.addEventListener('click', function (event) {
     changeColorText(breedElementLi, 'green');
   });
