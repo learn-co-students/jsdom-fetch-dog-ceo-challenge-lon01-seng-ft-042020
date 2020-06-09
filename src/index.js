@@ -32,19 +32,36 @@ fetch("https://dog.ceo/api/breeds/list/all")
 }
 
 function renderBreeds(arrayOfBreeds) {
-    const dogBreedsUl = document.querySelector("#dog-breeds")
-    for (const element of arrayOfBreeds){
-    const breed = document.createElement("li")
-    breed.innerHTML = element
-    dogBreedsUl.appendChild(breed)
-    //The font color of a breed changes on click
-    breed.addEventListener("click", function(e){
-        breed.style.color = "blue";
-    })
-}
-}
+    const breedUl = document.querySelector("#dog-breeds")
 
-//string.startsWith("a")
-//string.startsWith("b")
-//string.startsWith("c")
-//string.startsWith("d")
+    for (const breed of arrayOfBreeds){
+    const breedLi = document.createElement("li")
+    breedLi.innerHTML = breed
+    //   breedUl.appendChild(breedLi)
+
+    //Find the dropdown menu for letter selection & add a change event listener
+    dropdown = document.querySelector("#breed-dropdown")
+    dropdown.addEventListener("change", function(event) {
+    //Store the value of the letter that was selected in chosenLetter
+    const chosenLetter = dropdown.options[dropdown.selectedIndex].value ;
+    // If the breed starts with the letter that was selected by the user
+    //Add that breed to the list displayed to the user
+    if (breed.startsWith(chosenLetter)) {
+        breedUl.appendChild(breedLi)}
+        // breedUl.hasChildNodes()? breedUl.removeChild() & breedUl.appendChild(breedLi) : breedUl.appendChild(breedLi)
+   })
+  
+    // The font color of a breed changes on click
+    breedLi.addEventListener("click", function(e){
+        breedLi.style.color = "blue";
+    })
+} }
+
+    // if (element.startsWith(chosenLetter){ 
+    //     if (dogBreedsUl.childElementCount == 0) {
+    //     dogBreedsUl.appendChild(breed)
+    // } 
+    // else {dogBreedsUl.appendChild(breed) }
+    // }
+
+    // breedUl.childElementCount == 0?  breedUl.appendChild(breedLi) : breedUl.removeChile(); breedUl.appendChild(breedLi)
